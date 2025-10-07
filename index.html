@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batu 'Zycie' Kemiksiz - Game Designer Portfolio</title>
+<style>
+  /* General styling */
+  body { font-family: 'Courier New', monospace; margin:0; padding:0; background:linear-gradient(120deg, #0d0d0d, #1a1a1a); color:#eee; overflow-x:hidden; display:flex; }
+  html { scroll-behavior: smooth; }
+
+  /* Sidebar */
+  #sidebar {
+    position: fixed; left:0; top:0; width:220px; height:100vh; background:#111; padding:30px 15px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5); overflow-y:auto;
+  }
+  #sidebar ul { list-style:none; padding:0; margin:0; }
+  #sidebar ul li { margin-bottom:15px; font-weight:bold; }
+  #sidebar ul li a { color:#00ff99; text-decoration:none; cursor:pointer; transition: color 0.3s; }
+  #sidebar ul li a:hover { color:#ff00ff; }
+  #sidebar ul ul { margin-left:15px; margin-top:5px; list-style:disc; color:#888; font-weight:normal; }
+  #sidebar ul ul li { margin:5px 0; }
+  #sidebar ul ul li a { color:#888; }
+  .active-link { color:#ff00ff !important; font-weight:bold; }
+
+  /* Main content */
+  main { margin-left:240px; flex:1; }
+
+  /* Header */
+  header { padding:30px; text-align:center; background:#111; border-bottom:2px solid #00ff99; box-shadow:0 4px 15px rgba(0,255,153,0.2); margin-bottom:40px; }
+  nav a { margin:0 15px; color:#00ff99; text-decoration:none; font-weight:bold; transition: color 0.3s; }
+  nav a:hover { color:#ff00ff; text-shadow:0 0 8px #ff00ff; }
+
+  /* Section */
+  section { padding:60px 20px; max-width:1000px; margin:0 auto 60px auto; }
+  h2 { border-bottom:2px solid #00ff99; padding-bottom:10px; margin-bottom:30px; text-shadow:0 0 4px #00ff99; }
+
+  /* Card styling */
+  .project, .experience { margin-bottom:40px; background:#1a1a1a; padding:25px; border-radius:12px;
+    box-shadow:0 0 15px rgba(0,255,153,0.5); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; perspective:1000px; }
+  .project:hover, .experience:hover { transform: translateY(-8px) scale(1.02) rotateX(2deg) rotateY(2deg); box-shadow:0 12px 25px rgba(0,255,153,0.8); }
+  .project h3, .experience h3 { color:#00ff99; margin-bottom:10px; display:flex; align-items:center; }
+  .project h3::before, .experience h3::before { content:"★"; color:#ff00ff; margin-right:8px; }
+  img { max-width:100%; height:auto; border-radius:8px; margin-top:15px; border:2px solid #00ff99; transition: transform 0.3s; }
+  .project:hover img, .experience:hover img { transform: scale(1.05); }
+
+  /* Footer */
+  footer { text-align:center; padding:25px; background:#111; font-size:0.9em; color:#aaa; }
+  a { color:#00ff99; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+
+  /* Modal styling */
+  #aboutModal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.85);}
+  #aboutContent { background-color:#1a1a1a; margin:10% auto; padding:30px; border-radius:12px; width:80%; max-width:700px; color:#eee; box-shadow:0 0 20px rgba(0,255,153,0.5); position:relative; }
+  #closeAbout { position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; color:#ff00ff; cursor:pointer; }
+  #closeAbout:hover { color:#00ff99; }
+
+  /* Responsive */
+  @media(max-width:768px){ #sidebar { display:none; } main { margin-left:0; } .project, .experience { padding:20px; } header, footer { padding:20px; } }
+</style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <ul>
+        <li><a href="#lasergrid">Laser Grid</a></li>
+        <li><a href="#endlessrunner">Top-down Endless Runner</a></li>
+        <li><a href="#spacefps">Planlanan Projeler</a></li>
+      </ul>
+      <li><a href="#experience">Experiences</a></li>
+      <ul>
+        <li><a href="#skylab">SKY LAB Computer Science Club – GameLab Leader</a></li>
+        <li><a href="#jam2024">Yıldız JAM 2024 - Coordinator</a></li>
+        <li><a href="#jam2025">Yıldız JAM 2025 - Team Member</a></li>
+      </ul>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" id="openAbout">About Me</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <header>
+      <h1>Batu 'Zycie' Kemiksiz - Game Designer</h1>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experiences</a>
+        <a href="#contact">Contact</a>
+        <a href="#about" id="openAboutTop">About Me</a>
+      </nav>
+    </header>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project" id="lasergrid">
+        <h3>Laser Grid</h3>
+        <p>An Asteroids-inspired game where you score points by avoiding obstacles. Solo development project.</p>
+        <img src="AsteroidsSkylab.png" alt="Laser Grid" width="500">
+      </div>
+      <div class="project" id="endlessrunner">
+        <h3>Top-down Endless Runner</h3>
+        <p>An experimental endless runner featuring dogs. Roles: coding, idea creation, and art.</p>
+        <img src="8SPTgx.png" alt="Endless Runner" width="500">
+      </div>
+      <div class="project" id="spacefps">
+        <h3>And more arcade games like these</h3>
+        <p>I made some arcade games for school events and gamejams. I also worked on some game design concepts and story trailers for future projects, showcasing creativity and narrative exploration.</p>
+        <img src="fotofoto.png" alt="Planned Projects" width="500">
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experiences</h2>
+      <div class="experience" id="skylab">
+        <h3>SKY LAB Computer Science Club – GameLab Leader</h3>
+        <p>Leading the GameLab, mentoring junior members, planning roadmaps, and guiding the design and execution of projects. Developed leadership, collaborative, and creative problem-solving skills.</p>
+        <img src="skylablogo.png" alt="SKY LAB" style="display:block; margin:20px auto; max-width:300px;">
+      </div>
+      <div class="experience" id="jam2024">
+        <h3>Yıldız JAM 2024 - Coordinator</h3>
+        <p>Managed event organization, volunteer teams, booth setups, and workshops. Mentored teams and ensured smooth execution.</p>
+        <img src="jam1.jpg" alt="Yıldız JAM 2024">
+      </div>
+      <div class="experience" id="jam2025">
+        <h3>Yıldız JAM 2025 - Team Member</h3>
+        <p>Assisted in booth setup, volunteer support, and designing mini-games for attendees. Strengthened teamwork and creative skills.</p>
+        <img src="jam2.jpg" alt="Yıldız JAM 2025">
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><a href="mailto:kemiksiz39@gmail.com">E-Mail</a></p>
+      <p><a href="https://www.linkedin.com/in/batu-kemiksiz" target="_blank" style="color:#00ff99;">LinkedIn</a>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Batu Kemiksiz</p>
+    </footer>
+  </main>
+
+  <!-- About Me Modal -->
+  <div id="aboutModal">
+    <div id="aboutContent">
+      <span id="closeAbout">&times;</span>
+      <h2>About Me</h2>
+      <p>
+         Hey, I’m Batu ‘Zycie’ Kemiksiz — a passionate Game Designer focused on creating engaging and experimental interactive experiences.  
+      As the GameLab Leader at SKY LAB Computer Science Club, I guide teams, plan creative projects, and help ideas turn into real games.  
+      I love exploring unique mechanics, systems, and stories that challenge players’ minds and emotions.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Mouse parallax effect
+    const cards = document.querySelectorAll('.project, .experience');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width/2;
+        const centerY = rect.height/2;
+        const rotateX = ((y - centerY) / centerY) * 12;
+        const rotateY = ((x - centerX) / centerX) * 12;
+        card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      card.addEventListener('mouseleave', e => { card.style.transform = `rotateX(0deg) rotateY(0deg)`; });
+    });
+
+    // Sidebar link highlight
+    const sections = document.querySelectorAll('section, .project, .experience');
+    const sidebarLinks = document.querySelectorAll('#sidebar a');
+
+    function activateLink() {
+      let scrollPos = window.scrollY + window.innerHeight/2;
+      sections.forEach(sec => {
+        if(scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight){
+          sidebarLinks.forEach(link => link.classList.remove('active-link'));
+          const active = document.querySelector(`#sidebar a[href="#${sec.id}"]`);
+          if(active) active.classList.add('active-link');
+        }
+      });
+    }
+    window.addEventListener('scroll', activateLink);
+    activateLink();
+
+    // Sidebar link smooth scroll
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if(target){
+          window.scrollTo({ top: target.offsetTop - 20, behavior:'smooth' });
+        }
+      });
+    });
+
+    // About Me modal
+    const modal = document.getElementById("aboutModal");
+    const openBtn = document.getElementById("openAbout");
+    const openBtnTop = document.getElementById("openAboutTop");
+    const closeBtn = document.getElementById("closeAbout");
+
+    [openBtn, openBtnTop].forEach(btn => {
+      btn.onclick = () => { modal.style.display = "block"; }
+    });
+
+    closeBtn.onclick = () => { modal.style.display = "none"; }
+    window.onclick = (e) => { if(e.target === modal) modal.style.display = "none"; }
+  </script>
+
+</body>
+</html>
