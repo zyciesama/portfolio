@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Batu 'Zycie' Kemiksiz - Game Designer Portfolio</title>
 <style>
-  /* General styling */
+  
   body { font-family: 'Courier New', monospace; margin:0; padding:0; background:linear-gradient(120deg, #0d0d0d, #1a1a1a); color:#eee; overflow-x:hidden; display:flex; }
   html { scroll-behavior: smooth; }
 
-  /* Sidebar */
+ 
   #sidebar {
     position: fixed; left:0; top:0; width:220px; height:100vh; background:#111; padding:30px 15px;
     box-shadow: 2px 0 10px rgba(0,0,0,0.5); overflow-y:auto;
@@ -23,7 +23,7 @@
   #sidebar ul ul li a { color:#888; }
   .active-link { color:#ff00ff !important; font-weight:bold; }
 
-  /* Main content */
+  
   main { margin-left:240px; flex:1; }
 
   /* Header */
@@ -35,7 +35,7 @@
   section { padding:60px 20px; max-width:1000px; margin:0 auto 60px auto; }
   h2 { border-bottom:2px solid #00ff99; padding-bottom:10px; margin-bottom:30px; text-shadow:0 0 4px #00ff99; }
 
-  /* Card styling */
+  /* Cards */
   .project, .experience { margin-bottom:40px; background:#1a1a1a; padding:25px; border-radius:12px;
     box-shadow:0 0 15px rgba(0,255,153,0.5); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; perspective:1000px; }
   .project:hover, .experience:hover { transform: translateY(-8px) scale(1.02) rotateX(2deg) rotateY(2deg); box-shadow:0 12px 25px rgba(0,255,153,0.8); }
@@ -141,7 +141,7 @@
     </footer>
   </main>
 
-  <!-- About Me Modal -->
+  <!-- hakkinda -->
   <div id="aboutModal">
     <div id="aboutContent">
       <span id="closeAbout">&times;</span>
@@ -155,7 +155,7 @@
   </div>
 
   <script>
-    // Mouse parallax effect
+    // Mouse effect
     const cards = document.querySelectorAll('.project, .experience');
     cards.forEach(card => {
       card.addEventListener('mousemove', e => {
@@ -188,7 +188,7 @@
     window.addEventListener('scroll', activateLink);
     activateLink();
 
-    // Sidebar link smooth scroll
+    // smooth scroll
     sidebarLinks.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
@@ -199,7 +199,7 @@
       });
     });
 
-    // About Me modal
+    // hakkinda2
     const modal = document.getElementById("aboutModal");
     const openBtn = document.getElementById("openAbout");
     const openBtnTop = document.getElementById("openAboutTop");
@@ -215,3 +215,4 @@
 
 </body>
 </html>
+
