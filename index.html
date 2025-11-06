@@ -5,49 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Batu 'Zycie' Kemiksiz - Game Designer Portfolio</title>
 <style>
+  :root {
+    --bg: linear-gradient(120deg, #0d0d0d, #1a1a1a);
+    --sidebar-bg: #111;
+    --text: #eee;
+    --accent1: #00ff99;
+    --accent2: #ff00ff;
+    --card-bg: #1a1a1a;
+    --border-color: #00ff99;
+    --shadow: rgba(0,255,153,0.5);
+  }
+
+  body.light-mode {
+    --bg: linear-gradient(120deg, #fafafa, #e8e8e8);
+    --sidebar-bg: #f5f5f5;
+    --text: #111;
+    --accent1: #007a55;
+    --accent2: #c900c9;
+    --card-bg: #fff;
+    --border-color: #007a55;
+    --shadow: rgba(0,122,85,0.4);
+  }
+
   /* General styling */
-  body { font-family: 'Courier New', monospace; margin:0; padding:0; background:linear-gradient(120deg, #0d0d0d, #1a1a1a); color:#eee; overflow-x:hidden; display:flex; }
+  body { font-family: 'Courier New', monospace; margin:0; padding:0; background:var(--bg); color:var(--text); overflow-x:hidden; display:flex; transition:background 0.5s, color 0.5s; }
   html { scroll-behavior: smooth; }
 
   /* Sidebar */
   #sidebar {
-    position: fixed; left:0; top:0; width:220px; height:100vh; background:#111; padding:30px 15px;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.5); overflow-y:auto;
+    position: fixed; left:0; top:0; width:220px; height:100vh; background:var(--sidebar-bg); padding:30px 15px;
+    box-shadow: 2px 0 10px var(--shadow); overflow-y:auto; transition:background 0.5s;
   }
   #sidebar ul { list-style:none; padding:0; margin:0; }
   #sidebar ul li { margin-bottom:15px; font-weight:bold; }
-  #sidebar ul li a { color:#00ff99; text-decoration:none; cursor:pointer; transition: color 0.3s; }
-  #sidebar ul li a:hover { color:#ff00ff; }
+  #sidebar ul li a { color:var(--accent1); text-decoration:none; cursor:pointer; transition: color 0.3s; }
+  #sidebar ul li a:hover { color:var(--accent2); }
   #sidebar ul ul { margin-left:15px; margin-top:5px; list-style:disc; color:#888; font-weight:normal; }
   #sidebar ul ul li { margin:5px 0; }
   #sidebar ul ul li a { color:#888; }
-  .active-link { color:#ff00ff !important; font-weight:bold; }
+  .active-link { color:var(--accent2) !important; font-weight:bold; }
   #status { margin-top:30px; font-style:italic; color:#888; border-top:1px solid #222; padding-top:10px; }
+
+  /* Theme toggle button */
+  #themeToggle {
+    position: fixed; top: 20px; right: 25px; z-index: 1100;
+    background: var(--card-bg); color: var(--accent1); border: 2px solid var(--accent1);
+    border-radius: 8px; padding: 8px 14px; font-weight: bold; cursor: pointer;
+    box-shadow: 0 0 10px var(--shadow); transition: all 0.3s;
+  }
+  #themeToggle:hover {
+    background: var(--accent1); color: var(--sidebar-bg); box-shadow: 0 0 15px var(--accent1);
+  }
 
   /* Main content */
   main { margin-left:240px; flex:1; }
 
   /* Header */
-  header { padding:30px; text-align:center; background:#111; border-bottom:2px solid #00ff99; box-shadow:0 4px 15px rgba(0,255,153,0.2); margin-bottom:40px; }
+  header { padding:30px; text-align:center; background:var(--sidebar-bg); border-bottom:2px solid var(--accent1); box-shadow:0 4px 15px rgba(0,255,153,0.2); margin-bottom:40px; transition:background 0.5s; }
   h1 { animation: glow 2s ease-in-out infinite alternate; }
   @keyframes glow {
-    from { text-shadow: 0 0 5px #00ff99, 0 0 10px #00ff99, 0 0 20px #00ff99; }
-    to { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
+    from { text-shadow: 0 0 5px var(--accent1), 0 0 10px var(--accent1), 0 0 20px var(--accent1); }
+    to { text-shadow: 0 0 10px var(--accent2), 0 0 20px var(--accent2), 0 0 40px var(--accent2); }
   }
-  nav a { margin:0 15px; color:#00ff99; text-decoration:none; font-weight:bold; transition: color 0.3s; }
-  nav a:hover { color:#ff00ff; text-shadow:0 0 8px #ff00ff; }
+  nav a { margin:0 15px; color:var(--accent1); text-decoration:none; font-weight:bold; transition: color 0.3s; }
+  nav a:hover { color:var(--accent2); text-shadow:0 0 8px var(--accent2); }
 
   /* Section */
   section { padding:60px 20px; max-width:1000px; margin:0 auto 60px auto; }
-  h2 { border-bottom:2px solid #00ff99; padding-bottom:10px; margin-bottom:30px; text-shadow:0 0 4px #00ff99; }
+  h2 { border-bottom:2px solid var(--accent1); padding-bottom:10px; margin-bottom:30px; text-shadow:0 0 4px var(--accent1); }
 
   /* Card styling */
-  .project, .experience { margin-bottom:40px; background:#1a1a1a; padding:25px; border-radius:12px;
-    box-shadow:0 0 15px rgba(0,255,153,0.5); transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; perspective:1000px; }
-  .project:hover, .experience:hover { transform: translateY(-8px) scale(1.02) rotateX(2deg) rotateY(2deg); box-shadow:0 12px 25px rgba(0,255,153,0.8); }
-  .project h3, .experience h3 { color:#00ff99; margin-bottom:10px; display:flex; align-items:center; }
-  .project h3::before, .experience h3::before { content:"★"; color:#ff00ff; margin-right:8px; }
-  img { max-width:100%; height:auto; border-radius:8px; margin-top:15px; border:2px solid #00ff99; transition: transform 0.3s; }
+  .project, .experience { margin-bottom:40px; background:var(--card-bg); padding:25px; border-radius:12px;
+    box-shadow:0 0 15px var(--shadow); transition: transform 0.3s, box-shadow 0.3s, background 0.5s; cursor:pointer; perspective:1000px; }
+  .project:hover, .experience:hover { transform: translateY(-8px) scale(1.02) rotateX(2deg) rotateY(2deg); box-shadow:0 12px 25px var(--shadow); }
+  .project h3, .experience h3 { color:var(--accent1); margin-bottom:10px; display:flex; align-items:center; }
+  .project h3::before, .experience h3::before { content:"★"; color:var(--accent2); margin-right:8px; }
+  img { max-width:100%; height:auto; border-radius:8px; margin-top:15px; border:2px solid var(--accent1); transition: transform 0.3s, border-color 0.5s; }
   .project:hover img, .experience:hover img { transform: scale(1.05); }
 
   /* Fade-in scroll animation */
@@ -57,47 +90,40 @@
   /* Buttons */
   .button {
     display:inline-block; margin-top:10px; padding:10px 20px;
-    border:2px solid #00ff99; border-radius:8px; color:#00ff99;
+    border:2px solid var(--accent1); border-radius:8px; color:var(--accent1);
     transition:all 0.3s; text-transform:uppercase; font-weight:bold;
   }
   .button:hover {
-    background:#00ff99; color:#111; box-shadow:0 0 15px #00ff99;
+    background:var(--accent1); color:var(--sidebar-bg); box-shadow:0 0 15px var(--accent1);
   }
 
   /* Footer */
-  footer { text-align:center; padding:25px; background:#111; font-size:0.9em; color:#aaa; border-top:2px solid #00ff99; }
+  footer { text-align:center; padding:25px; background:var(--sidebar-bg); font-size:0.9em; color:#aaa; border-top:2px solid var(--accent1); transition:background 0.5s; }
 
   /* Modal styling */
   #aboutModal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.85);}
-  #aboutContent { background-color:#1a1a1a; margin:10% auto; padding:30px; border-radius:12px; width:80%; max-width:700px; color:#eee; box-shadow:0 0 20px rgba(0,255,153,0.5); position:relative; }
-  #closeAbout { position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; color:#ff00ff; cursor:pointer; }
-  #closeAbout:hover { color:#00ff99; }
+  #aboutContent { background-color:var(--card-bg); margin:10% auto; padding:30px; border-radius:12px; width:80%; max-width:700px; color:var(--text); box-shadow:0 0 20px var(--shadow); position:relative; }
+  #closeAbout { position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; color:var(--accent2); cursor:pointer; }
+  #closeAbout:hover { color:var(--accent1); }
 
   /* Scroll progress bar */
   #progress {
-    position:fixed; top:0; left:0; height:4px; background:#00ff99; width:0; z-index:1001;
+    position:fixed; top:0; left:0; height:4px; background:var(--accent1); width:0; z-index:1001;
   }
 
   /* Responsive */
   @media(max-width:768px){
     #sidebar { display:none; }
     main { margin-left:0; }
-    .project, .experience { padding:20px; }
     header, footer { padding:20px; }
   }
 
-/* Skills yazılarını büyütme */
-#skills ul li {
-  font-size: 1.3em; /* büyüklüğü artırır, 1.5em falan da deneyebilirsin */
-  line-height: 1.8em; /* satırlar arası boşluk */
-}
-
+  #skills ul li { font-size:1.3em; line-height:1.8em; }
 </style>
 </head>
 <body>
-
-  <!-- Scroll Progress Bar -->
   <div id="progress"></div>
+  <button id="themeToggle">🌙</button>
 
   <!-- Sidebar -->
   <div id="sidebar">
@@ -135,7 +161,6 @@
 
     <section id="projects">
       <h2>Projects</h2>
-
       <div class="project hidden" id="lasergrid">
         <h3>SKYLAB Asteroids</h3>
         <p>An Asteroids-inspired game where you score points by avoiding obstacles.</p>
@@ -152,15 +177,14 @@
 
       <div class="project hidden" id="spacefps">
         <h3>Gunstable</h3>
-        <p>A 2d side-scroll platformer shooter game made by me and a friend in 48 hours for Jamination 8.</p>
-        <p><strong>Engine:</strong> Unity | <strong>Role:</strong> Pixel Artist and Game Designer | <strong>Duration:</strong> 2 Days </p>
-        <img src="etGRQn.png" alt="Planned Projects" width="500">
+        <p>A 2D platform shooter made in 48 hours for Jamination 8.</p>
+        <p><strong>Engine:</strong> Unity | <strong>Role:</strong> Pixel Artist & Game Designer | <strong>Duration:</strong> 2 Days</p>
+        <img src="etGRQn.png" alt="Gunstable" width="500">
       </div>
     </section>
 
     <section id="experience">
       <h2>Experiences</h2>
-
       <div class="experience hidden" id="skylab">
         <h3>SKY LAB Computer Science Club – GameLab Leader</h3>
         <p>Leading the GameLab, mentoring junior members, planning roadmaps, and guiding projects.</p>
@@ -186,7 +210,7 @@
         <li>🎮 Game Design & Mechanics Balancing</li>
         <li>🧱 Level & Environment Design (Especially on Unreal Engine)</li>
         <li>🧠 Unity, Gamemaker, Godot Engine</li>
-        <li>🎨 Photoshop, Illustrator, Aseprite </li>
+        <li>🎨 Photoshop, Illustrator, Aseprite</li>
         <li>📜 Narrative Design & Worldbuilding</li>
       </ul>
     </section>
@@ -194,7 +218,7 @@
     <section id="contact">
       <h2>Contact</h2>
       <p><a href="mailto:kemiksiz39@gmail.com">E-Mail</a></p>
-      <p><a href="https://www.linkedin.com/in/batu-kemiksiz" target="_blank" style="color:#00ff99;">LinkedIn</a></p>
+      <p><a href="https://www.linkedin.com/in/batu-kemiksiz" target="_blank" style="color:var(--accent1);">LinkedIn</a></p>
     </section>
 
     <footer>
@@ -207,11 +231,9 @@
     <div id="aboutContent">
       <span id="closeAbout">&times;</span>
       <h2>About Me</h2>
-      <p>
-        Hey, I’m Batu ‘Zycie’ Kemiksiz — a passionate Game Designer focused on creating engaging and experimental interactive experiences.  
-        As the GameLab Leader at SKY LAB Computer Science Club, I guide teams, plan creative projects, and help ideas turn into real games.  
-        I love exploring unique mechanics, systems, and stories that challenge players’ minds and emotions.
-      </p>
+      <p>Hey, I’m Batu ‘Zycie’ Kemiksiz — a passionate Game Designer focused on creating engaging and experimental interactive experiences.</p>
+      <p>As the GameLab Leader at SKY LAB Computer Science Club, I guide teams, plan creative projects, and help ideas turn into real games.</p>
+      <p>I love exploring unique mechanics, systems, and stories that challenge players’ minds and emotions.</p>
     </div>
   </div>
 
@@ -226,25 +248,22 @@
         const centerX = rect.width/2;
         const centerY = rect.height/2;
         const rotateX = ((y - centerY) / centerY) * 12;
-        const rotateY = ((x - centerX) / centerX) * 12;
+        const rotateY = ((x - centerX) / centerY) * 12;
         card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
       });
-      card.addEventListener('mouseleave', e => { card.style.transform = `rotateX(0deg) rotateY(0deg)`; });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+      });
     });
 
-    // 🔗 Proje kartlarına link ekleme
+    // Project links
     const projectLinks = {
       endlessrunner: "https://zyciesama.itch.io/gecekondu",
       spacefps: "https://ygokdogan.itch.io/gunstable"
     };
-
     Object.entries(projectLinks).forEach(([id, url]) => {
       const card = document.getElementById(id);
-      if (card) {
-        card.addEventListener("click", () => {
-          window.open(url, "_blank");
-        });
-      }
+      if (card) card.addEventListener("click", () => window.open(url, "_blank"));
     });
 
     // Sidebar highlight
@@ -263,27 +282,15 @@
     window.addEventListener('scroll', activateLink);
     activateLink();
 
-    // Sidebar smooth scroll
-    sidebarLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if(target){
-          window.scrollTo({ top: target.offsetTop - 20, behavior:'smooth' });
-        }
-      });
-    });
-
     // About modal
     const modal = document.getElementById("aboutModal");
-    const openBtn = document.getElementById("openAbout");
-    const openBtnTop = document.getElementById("openAboutTop");
+    const openBtns = [document.getElementById("openAbout"), document.getElementById("openAboutTop")];
     const closeBtn = document.getElementById("closeAbout");
-    [openBtn, openBtnTop].forEach(btn => btn.onclick = () => { modal.style.display = "block"; });
-    closeBtn.onclick = () => { modal.style.display = "none"; }
-    window.onclick = (e) => { if(e.target === modal) modal.style.display = "none"; }
+    openBtns.forEach(btn => btn.onclick = () => modal.style.display = "block");
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = e => { if(e.target === modal) modal.style.display = "none"; }
 
-    // Fade-in animation on scroll
+    // Fade-in animation
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -297,12 +304,19 @@
       const percent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
       progress.style.width = percent + '%';
     });
+
+    // 🌙 Theme toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    function setTheme(isLight) {
+      document.body.classList.toggle('light-mode', isLight);
+      toggleBtn.textContent = isLight ? '🌞' : '🌙';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+    toggleBtn.addEventListener('click', () => {
+      const current = document.body.classList.contains('light-mode');
+      setTheme(!current);
+    });
+    if(localStorage.getItem('theme') === 'light') setTheme(true);
   </script>
 </body>
 </html>
-
-
-
-
-
-
