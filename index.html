@@ -232,6 +232,21 @@
       card.addEventListener('mouseleave', e => { card.style.transform = `rotateX(0deg) rotateY(0deg)`; });
     });
 
+    // 🔗 Proje kartlarına link ekleme
+    const projectLinks = {
+      endlessrunner: "https://zyciesama.itch.io/gecekondu",
+      spacefps: "https://ygokdogan.itch.io/gunstable"
+    };
+
+    Object.entries(projectLinks).forEach(([id, url]) => {
+      const card = document.getElementById(id);
+      if (card) {
+        card.addEventListener("click", () => {
+          window.open(url, "_blank");
+        });
+      }
+    });
+
     // Sidebar highlight
     const sections = document.querySelectorAll('section, .project, .experience');
     const sidebarLinks = document.querySelectorAll('#sidebar a');
@@ -285,6 +300,7 @@
   </script>
 </body>
 </html>
+
 
 
 
