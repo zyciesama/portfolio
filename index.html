@@ -131,6 +131,7 @@
     <ul>
       <li><a href="#projects">Projects</a></li>
       <ul>
+        <li><a href="#dojogame">DOJO:Undead</a></li>
         <li><a href="#lasergrid">SKYLAB Asteroids</a></li>
         <li><a href="#endlessrunner">Gecekondu</a></li>
         <li><a href="#spacefps">Gunstable</a></li>
@@ -267,12 +268,15 @@
 
     // Project links
     const projectLinks = {
+      dojogame: "https://bcem00.itch.io/dojo-undead",
       endlessrunner: "https://zyciesama.itch.io/gecekondu",
       spacefps: "https://ygokdogan.itch.io/gunstable"
     };
     Object.entries(projectLinks).forEach(([id, url]) => {
       const card = document.getElementById(id);
-      if (card) card.addEventListener("click", () => window.open(url, "_blank"));
+      if (card) card.addEventListener("click", () => {
+        if(url) window.open(url, "_blank");
+      });
     });
 
     // Sidebar highlight
@@ -329,8 +333,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
